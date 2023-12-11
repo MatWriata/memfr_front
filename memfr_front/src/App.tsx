@@ -1,15 +1,24 @@
-import React, {  } from 'react'
 /*import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'*/
 
 import './App.css'
-import {BrowserRouter, Route} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import {Index} from "./Components/MainPage/Index.tsx";
+import {Accueil} from "./Components/MainPage/Accueil.tsx";
 
 
 
 function App() {
   //const [count, setCount] = useState(0)
+    const urls =  createBrowserRouter(
+        createRoutesFromElements(<>
+            <Route path={"/connexion"} element={<Index/>}/>
+
+            <Route path={"/"} element={<Accueil/>}/>
+            </>
+        )
+    )
+
 
   return (
     // <>
@@ -34,13 +43,7 @@ function App() {
     //     Click on the Vite and React logos to learn more
     //   </p>
     // </>
-      <React.StrictMode>
-          <BrowserRouter>
-              <Route path={"/connexion"} element={<Index/>}>
-
-              </Route>
-          </BrowserRouter>
-      </React.StrictMode>
+      <RouterProvider router={urls} />
   )
 }
 
